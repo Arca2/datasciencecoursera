@@ -1,3 +1,6 @@
+library("swirl")
+swirl() #esto es lo que hay que poner en consola para retomar las lecciones
+
 x <- 1
 print(x) ## esto es un comentario
 y <- 1:20 ## esto es un vector o secuencia de numeros
@@ -108,3 +111,85 @@ x[1:3]
 x[x>"a"]
 u<- x>"a"
 x[u] #idices logicos ,Wow
+
+x<-matrix(1:6,2,3)
+x[1,2]
+x[2,1]
+x[1,]
+x[1,2,drop=FALSE]
+x[1,,drop=FALSE]
+
+x<-list(aardvark = 1:5)
+x$a
+x[["a",exact = FALSE]]
+
+#remover NaN values
+
+x<- c(1,2,NA,4,NA,5)
+bad <- is.na
+x[!bad]
+
+x<- c(1,2,NA,4,NA,5)
+y<- c("a","b",NA,"d",NA,"f")
+good <- complete.cases(x,y)
+good
+x[good]
+y[good]
+
+
+#operaciones vectorizadas
+x<-1:4 ; y<-6:9
+x+y
+x>2
+x>=2 
+y==8
+x*y
+x/y
+
+x<-matrix(1:4,2,2); y<- matrix(rep(10,4),2,2)
+x*y #element-wise multiplication
+x/y
+x%*%y  #true matrix multiplication
+
+
+
+##Quiz 1
+data <-read.csv( "hw1_data.csv")
+data[1:2,]
+nrow(data)
+sum(is.na(data$Ozone)) #missing values over column
+mean(data$Ozone, na.rm = TRUE)
+mean(data$Ozone)
+m <- subset(data, Ozone >10 , select = c("State","Minor.Population","Education.Expenditures"))
+
+newdata <- data[ which(data$Ozone > 31 & data$Temp > 90), ]
+mean(newdata$Solar.R , na.rm = TRUE)
+
+newdata <- data[ which(data$Month == 6), ]
+mean(newdata$Temp, na.rm = TRUE)
+
+newdata <- data[ which(data$Month == 5), ]
+max(newdata$Ozone, na.rm = TRUE)
+#install.packages("swirl")
+#library(swirl) #load swirl #help.start()
+?c #nos esntrega ayuda sobre la funcion, sin parentesis
+
+
+##workspace and files 
+list.files() #listar todos los archivos en el directorio de trabajo
+?list.files #help for list.files function
+args(list.files) # para listar los argumentos de la funcion
+old.dir <- getwd() # se le asigna el antiguo directorio a old.dir
+dir.create("testdir") # se crea el nuevo directorio de nombre "testdir"
+setwd("packageFiles") #set working directory to "testdir
+file.create("mytest.R") #crear el nuevo archivo "mytest.R"
+file.exists("mytest.R") # preguntar si existe el argumento en el directorio
+file.info("mytest.R") # informacion sobre el argumento
+file.info("mytest.R")$mode
+file.rename("mytest.R","mytest2.R")
+file.remove('mytest.R') # eliminar el argumento del workspace
+file.copy("mytest2.R","mytest3.R") #copia del primero archivo al segund( nuevo archivo)
+file.path("mytest3.R") #el nuevo file path es el argumento
+file.path('folder1','folder2') # directorios independientes
+dir.create(file.path("testdir2", "testdir3"),recursive = TRUE) # crear directorio y subdirectorio
+setwd(old.dir) #volver al antiguom direcdorio
