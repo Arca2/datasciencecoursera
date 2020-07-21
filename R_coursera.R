@@ -193,3 +193,38 @@ file.path("mytest3.R") #el nuevo file path es el argumento
 file.path('folder1','folder2') # directorios independientes
 dir.create(file.path("testdir2", "testdir3"),recursive = TRUE) # crear directorio y subdirectorio
 setwd(old.dir) #volver al antiguom direcdorio
+
+##Secuencias de numeros
+1:20
+pi:10
+15:1
+?`:`
+seq(1,20) # tambien nos crea una secuencia, es lo mismo que usar 1:20
+seq(0, 10, by=0.5) #aqui le indicamos de cuanto es incremento
+my_seq <- seq(5, 10, length=30)
+length(my_seq)
+1:length(my_seq) # para dar un n cualquiera de largo
+seq(along.with = my_seq) # lo mismo que lo anterior
+seq_along(my_seq) # lo correcto segun R es usar esto
+rep(0, times = 40) # replica el primer argumento las veces del segundo
+rep(c(0, 1, 2), times = 10) # diez veces el vector (0 1 2)
+rep(c(0, 1, 2), each = 10) # en este caso la cantidad de numeros del vector se distribube en orden creciente
+
+## Vectores
+num_vect <- c(0.5, 55, -10,6)
+tf <- num_vect < 1 # se le asigna segun el valor logico de la comparacion
+my_char <- c("My", "name", "is")
+paste(my_char, collapse = " ") # es como aplicar un join de python
+my_name <- c(my_char, "Rolando")
+paste("Hello", "world!", sep = " ") # para unir dos palabras simples
+paste(1:3, c("X","Y", "Z"), sep = "") #unir vectores numericos  y char sin espacios
+paste(LETTERS, 1:4, sep = "-") # LETTERS  es el abecedario de R
+
+## missing values
+x <- c(44, NA, 5, NA)
+y <- rnorm(1000) # vector de 1000 con distribucion normal estandar
+z <- rep(NA, 1000) # se crea un vector con 1000 NA's
+my_data <- sample(c(y, z), 100) # seleccion ramdom de los dos anteriores vectores
+my_na <- is.na(my_data)
+# NaN = not a number
+Inf - Inf
